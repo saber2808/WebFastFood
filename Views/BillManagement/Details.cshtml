@@ -1,0 +1,121 @@
+﻿@model WebFastFood.Models.DetailBill
+
+@{
+    ViewBag.Title = "Details";
+    //using (var context = new WebFastFood.Models.WebFastFoodEntities())
+    //{
+    //    foreach (var item in context.Users.Where(s => s.Account == User.Identity.Name))
+    //    {
+    //        if (context.Roles.Where(s => s.IDRole == item.IDRole).FirstOrDefault().IsAdmin == "false")
+    //        {
+    //            Layout = null;
+    //        }
+    //    }
+    //}
+}
+<p>
+    @Html.ActionLink("Print Bill", "Print", new { Id = Model.ID }, new { @class = "btn btn-default" })
+</p>
+
+<hr />
+<div>
+    <h1 class="col-12" style="text-align:center">Chi tiết hóa đơn</h1>
+    <hr />
+
+    @using (var context = new WebFastFood.Models.WebFastFoodEntities())
+    {
+        foreach (var item1 in context.DetailBills.Where(s => s.IDBill.ToString().Contains(Model.ID.ToString())).ToList())
+        {
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayNameFor(model => item1.ID)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayFor(model => item1.ID)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayNameFor(model => item1.IDFood)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayFor(model => item1.IDFood)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayNameFor(model => item1.Amount)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayFor(model => item1.Amount)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayNameFor(model => item1.UnitPrice)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayFor(model => item1.UnitPrice)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayNameFor(model => item1.Coupon)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayFor(model => item1.Coupon)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayNameFor(model => item1.IDBill)
+                </a>
+            </div>
+            <div class="col-12" style="text-align:center">
+                <a>
+                    @Html.DisplayFor(model => item1.IDBill)
+                </a>
+            </div>
+            <hr />
+        }
+    }
+    @using (var context = new WebFastFood.Models.WebFastFoodEntities())
+    {
+        <div class="col-12" style="text-align:center">
+            <a>
+                Tổng hóa đơn
+            </a>
+        </div>
+        <div class="col-12" style="text-align:center; font-weight:bold;font-size:22px">
+            <a>
+                @context.DetailBills.Where(s => s.IDBill == Model.ID).FirstOrDefault().IntoMoney
+            </a>
+        </div>
+        <hr />
+    }
+    <div class="col-12" style="text-align:center">
+        <a>
+            Chúc quý khách ngon miệng!
+        </a>
+    </div>
+    <div class="col-12" style="text-align:center">
+        <a>
+            Pass wifi: 1900.2727
+        </a>
+
+    </div>
+
+</div>
+<p>
+    <a href="~/BillManagement/DSBill" class="btn btn-default" style="margin-left:10px">Quay lại</a>
+</p>

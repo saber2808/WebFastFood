@@ -1,0 +1,26 @@
+﻿
+<h1>Hóa đơn</h1>
+<a href="@Url.Action("DsFoodNV","Food")" class="btn btn-default">Tiếp tục mua hàng</a>
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Tên món ăn</td>
+                <td>Hình ảnh</td>
+                <td>Giá</td>
+                <td>Số lượng</td>
+                <td>Thành tiền</td>
+                <td></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td colspan="6">
+                    Chưa có sản phẩm nào...
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

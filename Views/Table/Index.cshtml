@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebFastFood.Models.TableNumber>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Danh sách bàn</h1>
+<hr />
+<a href="~/Table/Create" class="btn btn-default" style="margin-bottom:10px">Tạo mới</a>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDTableNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDTableNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Number)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

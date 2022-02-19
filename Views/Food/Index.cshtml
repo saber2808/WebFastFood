@@ -1,0 +1,87 @@
+﻿@*@model IEnumerable<WebFastFood.Models.Food>*@
+@using WebFastFood.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Food>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Danh sách món ăn</h1>
+<hr />
+<a href="~/Food/Create" class="btn btn-default">Tạo mới</a>
+<a>
+    @{ Html.RenderAction("CategoryPartialAD", "CategoryFood");}
+</a>
+<div class="row">
+
+    @foreach (var food in Model)
+    {
+        <div class="col-xl-4 order-xl-2" style="margin-top:100px">
+            <div class="card card-profile" style="height:350px">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 order-lg-2">
+                        <div class="card-profile-image">
+                            @Html.LabelFor(model => food.ImageFood)
+                            <a href="~/Food/Details/@food.ID">
+                                <img src="@Url.Content(food.ImageFood)" height="100" width="100" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <div class="row">
+                            <div class="card-profile-stats d-flex justify-content-center">
+                                <div>
+                                    <span class="heading">@Html.LabelFor(model => food.NameFood)</span>
+                                    <span class="description">@Html.DisplayFor(model => food.NameFood)</span>
+                                </div>
+                                <div>
+                                    <span class="heading">@Html.LabelFor(model => food.IDCategoryFood)</span>
+                                    <span class="description">@Html.DisplayFor(model => food.IDCategoryFood)</span>
+                                </div>
+                                <div>
+                                    <span class="heading">@Html.LabelFor(model => food.Price)</span>
+                                    <span class="description">@Html.DisplayFor(model => food.Price)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    @if (food.Amount <= 1)
+                    {
+                        <p style="color:red">Hết hàng</p>
+                    }
+                    else
+                    {
+
+                    }
+                    <h5 class="h3">
+                        @Html.ActionLink("Sửa", "Edit", new { id = food.ID }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = food.ID })
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+<script type="text/javascript">
+
+    function testAlertDialog() {
+
+        alert("Món ăn đã hết, vui lòng chọn món khác!");
+    }
+
+</script>
+<div style="text-align:center">
+    Trang @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+</div>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />

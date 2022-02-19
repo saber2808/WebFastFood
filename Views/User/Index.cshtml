@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebFastFood.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Danh sách nhân viên</h1>
+<hr />
+<a href="~/User/Create" class="btn btn-default">Tạo mới</a>
+<div class="row">
+    @foreach (var nv in Model)
+    {
+        <div class="col-xl-4 order-xl-2" style="margin-top:100px">
+            <div class="card card-profile" style="height:300px">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 order-lg-2">
+                        <div class="card-profile-image">
+                            @Html.LabelFor(model => nv.ImageUser)
+                            <a href="~/User/Details/@nv.ID">
+                                <img src="@Url.Content(nv.ImageUser)" height="100" width="100" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card-profile-stats d-flex justify-content-center">
+                                <div>
+                                    <span class="heading">@Html.LabelFor(model => nv.NameUser)</span>
+                                    <span class="description">@Html.DisplayFor(model => nv.NameUser)</span>
+                                </div>
+                                <div>
+                                    <span class="heading">@Html.LabelFor(model => nv.IDRole)</span>
+                                    <span class="description">@Html.DisplayFor(model => nv.IDRole)</span>
+                                </div>
+                                <div>
+                                    <span class="heading">@Html.LabelFor(model => nv.Phone)</span>
+                                    <span class="description">@Html.DisplayFor(model => nv.Phone)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h5 class="h3">
+                        @Html.ActionLink("Sửa", "Edit", new { id = nv.ID }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = nv.ID }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = nv.ID })
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

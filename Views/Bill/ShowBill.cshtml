@@ -1,0 +1,84 @@
+﻿@model WebFastFood.Models.Cart
+@using WebFastFood.Models
+
+@{
+    ViewBag.Title = "ShowBill";
+}
+
+<h1>Hóa đơn</h1>
+<a href="@Url.Action("Index", "Food")" class="btn btn-default">Quay lại</a>
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Tên món ăn</td>
+                <td>Hình ảnh</td>
+                <td>Giá</td>
+                <td>Số lượng</td>
+                <td>Thành tiền</td>
+                <td></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                decimal total = item.quantity * (decimal)item._food.Price.Value;
+                <tr>
+                    <td>@Html.DisplayFor(model => item._food.NameFood)</td>
+                    <td><img src="@Url.Content(item._food.ImageFood)" height="50" width="50" /></td>
+                    <td>@Html.DisplayFor(model => item._food.Price)</td>
+                    <td>
+                        @using (Html.BeginForm("Update_Cart_Quantity", "Bill"))
+                        {
+                            <input type="hidden" value="@item._food.ID" name="idFood" />
+                            <input type="number" value="@item.quantity" name="billQuantity" min="1" max="@item._food.Amount"/>
+                            <input type="submit" value="Cập nhật" />
+                        }
+                    </td>
+                    <td>
+                        @total
+                    </td>
+                    <td>
+                        <a href="/Bill/RemoveCart/@item._food.ID">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" style="text-align:right"></td>
+                <td colspan="5" style="text-align:center">
+                    <a style="font-weight:bold">Tổng số tiền:</a>
+                    <h1 style="font-weight:bold">@Model.Total_money()</h1>
+                    <a>(Chưa áp dụng khuyến mãi!)</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @using (Html.BeginForm("OrdSuccess", "Bill"))
+                    {
+                        <table style="border-collapse:separate; border-spacing:5px">
+                            <tr>
+                                <td>Số bàn:</td>
+                                <td>@Html.DropDownList("TableNumber", new SelectList(Enum.GetValues(typeof(GenderTable))), "Chọn số bàn", new {@class = "form-control" })</td>
+                            </tr>
+
+                            <tr>
+                                <td>Mã khuyến mãi:</td>
+                                <td>@Html.DropDownList("Coupon", new SelectList(Enum.GetValues(typeof(GenderCoupon))), "Chọn mã khuyến mãi", new { @class = "form-control" })</td>
+                                
+                            </tr>
+                        </table>
+                        <input type="submit" value="Thanh toán" class="btn btn-success" />
+                    }
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    @Html.Partial("EmptyBill");
+}

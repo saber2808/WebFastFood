@@ -1,0 +1,88 @@
+﻿@model WebFastFood.Models.Food
+
+@{
+    ViewBag.Title = "DetailsNV";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+    <h1>Chi tiết món ăn</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IDFood)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IDFood)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NameFood)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NameFood)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Detail)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Detail)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IDCategoryFood)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoryFood.NameCategoryFood)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageFood)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Url.Content(Model.ImageFood)" height="100" width="100" id="previewImg" />
+        </dd>
+        <dt class="col-sm-2">
+
+        </dt>
+        <dd class="col-sm-10">
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="~/Food/DsFoodNV" class="btn btn-default" style="margin-left:10px">Quay lại</a>
+</p>

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebFastFood.Models.Bill>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Thống kê hóa đơn</h1>
+@using (Html.BeginForm())
+{
+    <h5>
+        Từ ngày: <input type="date" name="date" value="@Session["date"]" /> Đến ngày: <input type="date" name="date1" value="@Session["date1"]" /> <input type="submit" value="Tìm kiếm" />
+    </h5>
+    
+}
+<div class="col-12" style="text-align:right">
+    <a>Tổng doanh thu: </a>
+    <a style="font-weight:bold; font-size:22px"> @Model.Where(s => s.Status == true).Sum(s => s.IntoMoney) VND</a>
+    @using (Html.BeginForm("Tranfer", "BillManagement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="submit" value="Lưu doanh thu" />
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IntoMoney)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDUser)
+            </td>
+            <td>
+                @if (item.Status == true)
+                {
+                    <a>Đã thanh toán</a>
+                }
+                else if(item.Status == false)
+                {
+                    <a>Hủy đơn</a>
+                }
+                else
+                {
+                    <a>Chưa thanh toán</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IntoMoney)
+            </td>
+            <td>
+                @Html.ActionLink("Chi tiết hóa đơn", "Details", new { Id = item.ID })
+            </td>
+        </tr>
+    }
+</table>
+
+

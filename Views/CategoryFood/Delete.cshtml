@@ -1,0 +1,37 @@
+﻿@model WebFastFood.Models.CategoryFood
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div>
+    <h1>Xóa loại món ăn</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IDCategoryFood)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IDCategoryFood)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NameCategoryFood)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NameCategoryFood)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> 
+            <a href="~/CategoryFood/Index" class="btn btn-default" style="margin-left:10px">Quay lại</a>
+        </div>
+    }
+</div>
