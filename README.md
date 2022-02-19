@@ -4,6 +4,7 @@
 <li> Hoàng Trần An Thiên - 18DH110447 </li>
 
 ## Describe Project:
+<ul>
 <li> Writting in ASP.NET MVC </li>
 <li> It is a small project during my study at HUFLIT </li>
 <li> Website have full basic functions 
@@ -21,6 +22,8 @@
   <li> Customer UI </li>
   </ul>
 </li>
+</ul>
+
 ## Programming Languages:
 <li> ASP .NET Framework (MVC) </li>
 <li> Microsoft SQL Server </li>
