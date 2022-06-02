@@ -25,7 +25,7 @@
 </ul>
 
 ## Programming Languages:
-<li> ASP .NET Framework (MVC) </li>
+<li> C# ASP .NET Framework (MVC) </li>
 <li> Microsoft SQL Server </li>
 
   
